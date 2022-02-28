@@ -30,11 +30,16 @@ const displaySearchResult = phones=>{
                     <div class="card-body">
                         <h5 class="card-title">${phone.phone_name}</h5>
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <a href="#" class="btn btn-primary">Details</a>
+                        <a onclick="loadMealDetail(${phoneId.slug})" href="#" class="btn btn-primary">Details</a>
                     </div>
               </div>
         `
         searchResult.appendChild(div);
     });
     
+}
+
+
+const loadMealDetail = phoneId =>{
+    console.log(phoneId);
 }
