@@ -14,17 +14,23 @@
 
 
 
-    <h2 class="text-center text-3xl ">Search Your Phones</h2>
+    <h2 class="text-center text-3xl text-green-400">Search Your Phones</h2>
 
     <!-- phone search area -->
 
-    <div class="p-4 text-center ">
+        <div class="p-4 text-center ">
             <input id="search-field" type="text" class="border-2 w-1/2 p-4 text-3xl rounded-xl" placeholder="Search phone" aria-label="Recipient's username" aria-describedby="button-addon2">
             <button onclick="searchPhone()" class="border-2 p-4 text-3xl rounded-xl " type="button" id="button-search">Search</button>
      </div>
 
-     <div id="details-Up" class="w-1/2 mx-auto my-10 ">
-    </div>
+        <div id="details-Up" class="w-1/2 mx-auto my-10 ">
+
+        </div>
+
+        <!-- error show -->
+      <div>
+        <p id="error-show" class="text-red-600 text-center">something went wrong.Please try again leter</p>
+      </div>
 
 
         <!-- phone searchResult -->
@@ -33,7 +39,7 @@
           </div>
       
       
-      <span></span>
+      
       
       <!-- script start -->
 

@@ -1,6 +1,7 @@
 const searchField = document.getElementById('search-field');
 const searchResult = document.getElementById('search-result');
 const details =document.getElementById('details-Up');
+document.getElementById('error-show').style.display='none'
 
 const searchPhone = () => {
 
@@ -9,21 +10,30 @@ const searchPhone = () => {
     const searchText = searchField.value;
 
     searchField.value = '';
-    // console.log(searchText);
+    if(searchText==''){
+        document.getElementById('error-show').style.display='none' 
+        alert("No result found")}
+    else{
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
+        fetch(url)
+        .then(res => res.json())
+        .then(data => displaySearchResult(data.data.slice(0,20)))
+        .catch(error => displayError(error));
+    }
 
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
-    fetch(url)
-    .then(res => res.json())
-    .then(data => displaySearchResult(data.data.slice(0,20)));
+    const displayError= error=> {
+        document.getElementById('error-show').style.display='block'
+        console.log(error);
+      }
+    
     
 } 
 
 
 const displaySearchResult = phones=>{
 
-   
-
-    
+    searchResult.textContent='';
+    document.getElementById('error-show').style.display='none'
     phones.forEach(phone => {
     
        
@@ -47,22 +57,19 @@ const displaySearchResult = phones=>{
 
 
 const loadPhoneDetail = phoneId =>{
-    console.log(phoneId);
+    
     const url =` https://openapi.programming-hero.com/api/phone/${phoneId}`
     fetch(url)
     .then(res => res.json())
     .then(data => displayDetails(data.data));
-
-
 }
 
 
 
 const displayDetails = (phone) =>{
-    console.log(phone);
+    
+    details.textContent='';
 const {name,image,brand,mainFeatures,others} = phone;
-
-
 
     const div = document.createElement('div');
         div.classList.add('col');
