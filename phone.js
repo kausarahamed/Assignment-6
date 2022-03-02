@@ -50,7 +50,7 @@ else{
        const div = document.createElement('div');
         
         div.innerHTML=`
-            <div class="bg-slate-400 p-10">
+            <div class="bg-slate-800 p-10">
                 <img src="${phone.image}" class="mx-auto w-5/6 mb-4 rounded-2xl" alt="...">
                     <div>
                         <h3 class="text-2xl font-semibold">${phone.phone_name}</h3>
@@ -84,8 +84,8 @@ const {name,image,brand,mainFeatures,others} = phone;
     const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML=`
-            <div class='border-2 text-center mb-5 bg-gray-300 rounded-2xl'>
-                <img src="${image}" class="w-3/4 mx-auto rounded-2xl text-center" alt="...">
+            <div class='border-2 text-center mb-20 p-5 bg-gray-300 rounded-2xl'>
+                <img src="${image}" class="w-1/2 mx-auto rounded-2xl text-center" alt="...">
                     <div class="text-left">
                         <p class="text-3xl font-bold">Model: ${name}</p>
                         <p class="text-2xl font-semibold">Brand: ${brand} </p>
