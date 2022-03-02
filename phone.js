@@ -13,7 +13,8 @@ const searchPhone = () => {
     searchField.value = '';
     if(searchText==''){
         errorMessage.style.display='block'
-        searchResult.textContent = '' 
+        searchResult.textContent = ''
+        details.textContent = '' 
         }
     else{
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
@@ -31,6 +32,15 @@ const searchPhone = () => {
 
 
 const displaySearchResult = phones=>{
+console.log(phones);
+
+if(phones.length <= 0){
+    errorMessage.style.display='block'
+}
+else{
+
+
+
 
     searchResult.textContent='';
     errorMessage.style.display='none'
@@ -40,7 +50,7 @@ const displaySearchResult = phones=>{
        const div = document.createElement('div');
         
         div.innerHTML=`
-            <div class="bg-red-200 p-10">
+            <div class="bg-slate-400 p-10">
                 <img src="${phone.image}" class="mx-auto w-5/6 mb-4 rounded-2xl" alt="...">
                     <div>
                         <h3 class="text-2xl font-semibold">${phone.phone_name}</h3>
@@ -52,7 +62,7 @@ const displaySearchResult = phones=>{
         `
         searchResult.appendChild(div);
     });
-    
+}  
 }
 
 
