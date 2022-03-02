@@ -1,7 +1,8 @@
 const searchField = document.getElementById('search-field');
 const searchResult = document.getElementById('search-result');
 const details =document.getElementById('details-Up');
-document.getElementById('error-show').style.display='none'
+const errorMessage = document.getElementById('error-show');
+errorMessage.style.display='none'
 
 const searchPhone = () => {
 
@@ -11,29 +12,28 @@ const searchPhone = () => {
 
     searchField.value = '';
     if(searchText==''){
-        document.getElementById('error-show').style.display='none' 
-        alert("No result found")}
+        errorMessage.style.display='block'
+        searchResult.textContent = '' 
+        }
     else{
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
         fetch(url)
         .then(res => res.json())
         .then(data => displaySearchResult(data.data.slice(0,20)))
-        .catch(error => displayError(error));
+        searchResult.textContent = ''
+        details.textContent = ''
     }
 
-    const displayError= error=> {
-        document.getElementById('error-show').style.display='block'
-        console.log(error);
-      }
-    
-    
+
 } 
+
+
 
 
 const displaySearchResult = phones=>{
 
     searchResult.textContent='';
-    document.getElementById('error-show').style.display='none'
+    errorMessage.style.display='none'
     phones.forEach(phone => {
     
        
@@ -85,10 +85,10 @@ const {name,image,brand,mainFeatures,others} = phone;
                         <p class="text-xl"><span class="font-semibold">ChipSet:</span> ${mainFeatures.chipSet}</p>
                         <p class="text-xl"><span class="font-semibold">Memory:</span> ${mainFeatures.memory}</p>
                         <p class="text-xl"><span class="font-semibold">Sensors:</span> ${mainFeatures.sensors}</p>
-                        <p class="text-xl"><span class="font-semibold">Bluetooth:</span> ${others.Bluetooth}</p>
-                        <p class="text-xl"><span class="font-semibold">GPS:</span> ${others.GPS}</p>
-                        <p class="text-xl"><span class="font-semibold">USB:</span> ${others.USB}</p>
-                        <p class="text-xl"><span class="font-semibold">Radio:</span> ${others.Radio}</p>
+                        <p class="text-xl"><span class="font-semibold">Bluetooth:</span> ${others?.Bluetooth||'Not found'}</p>
+                        <p class="text-xl"><span class="font-semibold">GPS:</span> ${others?.GPS||'Not found'}</p>
+                        <p class="text-xl"><span class="font-semibold">USB:</span> ${others?.USB||'Not found'}</p>
+                        <p class="text-xl"><span class="font-semibold">Radio:</span> ${others?.Radio||'Not found'}</p>
                         
                     </div>
               </div>
